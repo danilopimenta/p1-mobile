@@ -14,13 +14,13 @@ export default class LocalidadeLista extends Component {
                                                   uf
                                               }) => (
                     <React.Fragment key={cep}>
+                        <Divider/>
                         <Card>
                             <span className="m-0">{cep}</span><br/>
                             <span>{logradouro}</span><br/>
                             <span>{bairro}</span><br/>
                             <span>{localidade} - {uf}</span>
                         </Card>
-                        <Divider/>
                     </React.Fragment>
                 ))}
             </div>

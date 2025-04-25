@@ -18,7 +18,7 @@ class App extends React.Component {
             }))
             this.addNewUFMetric(location.uf)
         } catch (err) {
-            alert(err.message)
+            alert(`Erro ao tentar buscar o cep: ${err.message}`)
         }
     }
 

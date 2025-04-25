@@ -10,8 +10,8 @@ async function fetchCEP(cep) {
     try {
         const result = await createConnection()
             .get(`${cep}/json/`)
-        if (result.data.error || result.data.error === 'true') {
-            throw "Erro na request viacep";
+        if (result.data.erro) {
+            throw new Error(`CEP ${cep} inválido`);
         }
         return result.data
     } catch (err) {
