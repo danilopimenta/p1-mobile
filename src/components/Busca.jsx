@@ -5,13 +5,15 @@ import {IconField} from 'primereact/iconfield'
 import {InputIcon} from 'primereact/inputicon'
 import {InputText} from 'primereact/inputtext'
 
-import {fetchCEP} from "../util/viacep-client.js";
-
-
 export default class Busca extends Component {
     state = {
         locationList: [],
         searchingCep: ''
+    }
+
+    onFormSubmit = (event) => {
+        event.preventDefault()
+        this.props.onSearchLocation(this.state.searchingCep)
     }
 
     render() {
@@ -37,33 +39,10 @@ export default class Busca extends Component {
         )
     }
 
-    onFormSubmit = async (event) => {
-        event.preventDefault()
-        try {
-            const location = await fetchCEP(
-                this.state.searchingCep
-            )
-            const {
-                cep,
-                logradouro,
-                complemento,
-                bairro,
-                localidade,
-                uf
-            } = location
-            console.log(location)
-            alert(`${cep}: ${logradouro} ${complemento}, ${bairro}, ${localidade}-${uf}`)
-        } catch (err) {
-            alert(err.message)
-        }
-
-    }
-
     onFormChanged = (event) => {
         this.setState({searchingCep: event.target.value})
     }
 }
-
 
 Busca.defaultProps = {
     dica: 'Buscar algo...'
