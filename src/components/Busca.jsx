@@ -11,9 +11,9 @@ export default class Busca extends Component {
         searchingCep: ''
     }
 
-    onFormSubmit = (event) => {
+    onFormSubmit = async (event) => {
         event.preventDefault()
-        this.props.onSearchLocation(this.state.searchingCep)
+        await this.props.onSearchLocation(this.state.searchingCep)
     }
 
     render() {
