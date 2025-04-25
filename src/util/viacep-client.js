@@ -10,6 +10,9 @@ async function fetchCEP(cep) {
     try {
         const result = await createConnection()
             .get(`${cep}/json/`)
+        if (result.data.error || result.data.error === 'true') {
+            throw "Erro na request viacep";
+        }
         return result.data
     } catch (err) {
         throw err
