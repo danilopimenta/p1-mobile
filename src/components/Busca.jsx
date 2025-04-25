@@ -26,6 +26,7 @@ export default class Busca extends Component {
                             placeholder={this.props.dica}
                             onChange={this.onFormChanged}
                             value={this.state.searchingCep}
+                            required
                         />
                     </IconField>
                     <Button
@@ -38,18 +39,24 @@ export default class Busca extends Component {
 
     onFormSubmit = async (event) => {
         event.preventDefault()
-        const location = await fetchCEP(
-            this.state.searchingCep
-        )
-        const {
-            cep,
-            logradouro,
-            complemento,
-            bairro,
-            localidade,
-            uf
-        } = location
-        alert(`${cep}: ${logradouro} ${complemento}, ${bairro}, ${localidade}-${uf}`)
+        try {
+            const location = await fetchCEP(
+                this.state.searchingCep
+            )
+            const {
+                cep,
+                logradouro,
+                complemento,
+                bairro,
+                localidade,
+                uf
+            } = location
+            console.log(location)
+            alert(`${cep}: ${logradouro} ${complemento}, ${bairro}, ${localidade}-${uf}`)
+        } catch (err) {
+            alert(err.message)
+        }
+
     }
 
     onFormChanged = (event) => {
