@@ -1,6 +1,7 @@
-import {Button} from 'primereact/button';
 import './App.css'
 import Busca from "./components/Busca.jsx";
+import LocalidadeLista from "./components/LocalidadeLista.jsx";
+import { Divider } from 'primereact/divider';
 
 function App() {
     return (
@@ -10,6 +11,8 @@ function App() {
                     <Busca
                         dica='Buscar CEP 0000-000'/>
                 </div>
+                <Divider />
+                <LocalidadeLista />
             </div>
             <div className="col-6">
 
